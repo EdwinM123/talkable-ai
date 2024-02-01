@@ -8,4 +8,6 @@ import wolframalpha
 #speech recognition 
 software = pyttsx3.init();
 voices = software.getProperty("voices");
-software.setProperty('voices', voices[0]);
+software.setProperty('voices', voices[0].1d); #0=guy 1=girl
+#word to activate 
+word = 'computer' #has error fix later
