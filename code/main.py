@@ -3,10 +3,10 @@ import pyttsx3
 import speech_recognition as sr 
 import webbrowser
 import wikipedia 
-import wolframalpha
+import wolframalpha 
  
 #browser stuff
-chrome_path = r" " #ADD THIS LATER #ADD PATH TO CHROME.EXE HERE
+chrome_path = r"C:\Program Files\Google\Chrome\Application\Chrome.exe" 
 webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
 
 #speech recognition 
@@ -44,8 +44,8 @@ def parseCommand():
 def search_wikipedia(query=' ') :
     searchResults = wikipedia.search(query)
     if not searchResults:
-        print("No wikipeida result")
-        return "No result recieved"
+        print("No wikipedia result")
+        return "No result received"
     try:
         wikiPage = wikipedia.page(searchResults[0])
     except wikipedia.DisambiguationError as error:
