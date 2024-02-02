@@ -6,15 +6,15 @@ import wikipedia
 import wolframalpha
 
 #speech recognition 
-software = pyttsx3.init();
-voices = software.getProperty("voices");
-software.setProperty('voices', voices[0].id); #0=guy 1=girl
+engine = pyttsx3.init();
+voices = engine.getProperty("voices");
+engine.setProperty('voices', voices[0].id); #0=guy 1=girl
 #word to activate 
 word = 'computer' 
 def speak(text, rate =120):
-    software.setProperty('rate', rate);
-    software.say(text);
-    software.runAndWait();
+    engine.setProperty('rate', rate);
+    engine.say(text);
+    engine.runAndWait();
 
 def parseCommand():
     listening=sr.Recognizer();
