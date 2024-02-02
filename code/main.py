@@ -5,6 +5,10 @@ import webbrowser
 import wikipedia 
 import wolframalpha
 
+#browser stuff
+chrome_path = r" " #ADD THIS LATER #ADD PATH TO CHROME.EXE HERE
+webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+
 #speech recognition 
 engine = pyttsx3.init();
 voices = engine.getProperty("voices");
@@ -44,6 +48,7 @@ if __name__ == '__main__':
         query = parseCommand().lower().split()
 
         if query[0] == word:
+
             query.pop(0);
             if query[0] == 'say':
                 if 'hello' in query:
@@ -52,4 +57,8 @@ if __name__ == '__main__':
                     query.pop(0)
                     speech=" ".join(query);
                     speak(speech)
+            if query[0] == 'go' and query[0] == 'to':
+                speak('opening');
+                query = ' '.join(query[:2]);
+                webbrowser.get('chrome').open_new(query);
 
