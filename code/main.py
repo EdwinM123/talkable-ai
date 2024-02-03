@@ -14,7 +14,37 @@ engine = pyttsx3.init();
 voices = engine.getProperty("voices");
 engine.setProperty('voices', voices[0].id); #0=guy 1=girl
 #word to activate 
-word = 'computer' 
+word = 'computer'
+
+#wolfram alpha 
+wolframId = '4PQE2E-Y62UYAV8LP'
+wolframClient = wolframalpha.Client(wolframId);
+
+def check_result_wolfram(var):
+    ###List
+    if isinstance(var, list):
+        return var[0]['plaintext'];
+    ###Dictionary
+    else:
+        return var['plaintext']
+
+def search_wolframalpha(query=''):
+    response = wolframClient.query(query)
+
+    if response['@success'] == 'false':
+        return 'could not compute';
+    else: 
+        pod0 = response['pod'][0]
+        pod1=response['pop'][1]
+        if(('result') in pod1['@title'].lower()) or (pod1.get('@primary', 'false') == 'true') or ('definition' in pod1['@title'].lower()):
+            result = check_result_wolfram(pod1['subpod'])
+            return result.split('(')[0];
+        else:
+            question = check_result_wolfram(pod0['subpod'])
+            return question.split('(')[0]
+            speak('could not find question, checking wikipedia')
+            return search_wikipedia(question);
+
 def speak(text, rate =120):
     engine.setProperty('rate', rate);
     engine.say(text);
@@ -71,14 +101,24 @@ if __name__ == '__main__':
                     query.pop(0)
                     speech=" ".join(query);
                     speak(speech)
+            #browser
             if query[0] == 'go' and query[0] == 'to':
                 speak('opening');
                 query = ' '.join(query[:2]);
                 webbrowser.get('chrome').open_new(query);
+            #Wiki
             if query[0] =='wikipedia':
                 query = ' '.join(query[1:]);
                 speak("searching...")
                 speak(search_wikipedia(query));
-
+            #wolfram questions
+            if query[0] == 'calculate' or query[0] == 'compute' or query[0] == 'computer':
+                query = ' '.join(query[1:]);
+                speak("calculating...")
+                try: 
+                    result = search_wolframalpha(query)
+                    speak(result)
+                except:
+                    speak('Unable to compute.')
             
 
