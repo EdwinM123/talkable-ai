@@ -121,4 +121,7 @@ if __name__ == '__main__':
                 except:
                     speak('Unable to compute.')
             
-
+            #end of my misery
+            if query[0] == 'exit' or query[0]=='goodbye' or query[0]=='bye' or query[0]=='kys':
+                speak("goodbye")
+                break;
