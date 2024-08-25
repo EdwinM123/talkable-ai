@@ -3,7 +3,6 @@ import pyttsx3
 import speech_recognition as sr 
 import webbrowser
 import wikipedia 
-import wolframalpha 
  
 #browser stuff
 chrome_path = r"C:\Program Files\Google\Chrome\Application\Chrome.exe" 
