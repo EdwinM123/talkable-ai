@@ -14,7 +14,7 @@ engine = pyttsx3.init();
 voices = engine.getProperty("voices");
 engine.setProperty('voices', voices[0].id); #0=guy 1=girl
 #word to activate 
-word = 'computer'
+word = 'karen'
 
 #wolfram alpha 
 wolframId = '4PQE2E-Y62UYAV8LP'
