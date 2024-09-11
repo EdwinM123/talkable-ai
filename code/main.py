@@ -77,7 +77,7 @@ if __name__ == '__main__':
                 query = ' '.join(query[:2]);
                 webbrowser.get('chrome').open_new(query);
             #Wiki
-            if query[0] =='wikipedia':
+            if query[0] =='wikipedia' or query [0]=='search' and query[0]=='up' or query[0]=='search':
                 query = ' '.join(query[1:]);
                 speak("searching...")
                 speak(search_wikipedia(query));
